@@ -1,0 +1,14 @@
+site_name: Henrique Sebastião Wiki
+repo_url: https://github.com/henriquesebastiao/wiki
+copyright: Henrique Sebastião
+theme:
+  name: readthedocs
+  locale: pt_BR
+nav:
+  - Início: index.md
+  - Segurança:
+      - GPG: security/gpg.md
+      - SSH: security/ssh.md
+markdown_extensions:
+  - toc:
+      permalink: true # Links de âncora para cada seção de uma página

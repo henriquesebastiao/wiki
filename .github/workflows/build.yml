@@ -1,0 +1,56 @@
+name: Build
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+
+    env:
+      UV_SYSTEM_PYTHON: 1
+      PYTHON_COLORS: 0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: |
+            pyproject.toml
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14.2'
+
+      - name: Install Python dependencies
+        run: uv sync --all-extras
+
+      - name: Build site
+        run: uv run mkdocs build -v
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: 'stable'
+
+      - name: Install minify
+        run: go install github.com/tdewolff/minify/v2/cmd/minify@latest
+
+      - name: Minify files
+        run: minify -r -o site/ site/
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: site
+          path: "site"
