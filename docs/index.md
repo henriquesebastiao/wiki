@@ -9,3 +9,8 @@ ficarei feliz em ter ajudado :).
 Algumas coisas eu posto no meu [blog](https://henriquesebastiao.com/),
 mas coisas mais técnicas e massantes como um passo a passo, que sirva como referência ficarão nessa Wiki.
 
+O objetivo aqui não é ser perfeito, mas útil para mim e para todos.
+
+## Contato
+
+Caso queira falar comigo me contate por email: [contato@henriquesebastiao.com](mailto:contato@henriquesebastiao.com)

@@ -9,6 +9,8 @@ nav:
   - Segurança:
       - GPG: security/gpg.md
       - SSH: security/ssh.md
+  - Ferramentas:
+      - Markdown: tools/markdown.md
 markdown_extensions:
   - toc:
       permalink: true # Links de âncora para cada seção de uma página
