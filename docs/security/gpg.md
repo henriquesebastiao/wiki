@@ -23,6 +23,8 @@ Com isso um prompt será iniciado, e as seguintes informações serão solicitad
 
 Ao fim desse procedimento você terá criado seu par de chaves (pública e privada) PGP.
 
+### Listando as chaves privadas
+
 Agora você pode listar suas chaves privadas com o comando:
 
 ```shell
@@ -59,6 +61,30 @@ possibilitando criptografar mensagens e arquivos.
 
 A sua chave privada nunca deve ser vista por ninguém, guarde ela a sete chaves.
 A chave que estou exibindo aqui foi criada apenas para fins de exemplo, nunca usarei ela.
+
+### Listando as chaves públicas
+
+Você também pode listar as chaves públicas existentes no seu *keyring* com o comando:
+
+```shell
+gpg --list-keys
+```
+
+Saída:
+
+```txt
+[keyboxd]
+---------
+pub   ed25519 2026-02-04 [SC]
+      209D1917A8C9E0ECD46BE23CFA450D27B6396F17
+uid           [ultimate] Henrique Sebastião <exemplo@henriquesebastiao.com>
+sub   cv25519 2026-02-04 [E]
+
+pub   rsa4096 2026-01-23 [SC]
+      9FB4E2C44F1F59049C24116C6F5C3CD702976E14
+uid           [ultimate] Henrique Sebastião <contato@henriquesebastiao.com>
+sub   rsa4096 2026-01-23 [E]
+```
 
 ## Exibir a chave pública
 
@@ -142,7 +168,11 @@ Agora sua chave privada está salva no arquivo `gpg-private-key`.
 
 ## Criptografando um arquivo com criptografia simétrica
 
-Você pode criptografar arquivos com GPG, para um exemplo vamos criar um arquivo de texto com a frase "Meu texto super secreto".
+Você pode criptografar arquivos com GPG por meio de criptografia simétrica,
+sem precisar ter um par de chaves PGP. Na criptografia simétrica você precisa informar
+uma senha de criptografia quando for criptografar e descriptografar os dados.
+
+Para um exemplo vamos criar um arquivo de texto com a frase "Meu texto super secreto".
 
 ```shell
 echo "Meu texto super secreto" > texto.txt
@@ -199,3 +229,59 @@ Agora podemos ler o arquivo e ver que o conteúdo está visível:
 $ cat texto-descriptografado.txt 
 Meu texto super secreto
 ```
+
+## Criptografando um arquivo com criptografia assimétrica
+
+Alternativamente você também pode criptografar arquivos utilizando um par de chaves PGP,
+neste método de criptografia você utiliza uma chave pública para criptografar os dados e
+apenas é possível descriptografar os dados possuindo a chave privada respectiva a chave pública
+utilizada para criptografar os dados.
+
+Esse método é muito útil quando queremos enviar um arquivo de forma segura para alguém. A pessoa que irá receber
+o arquivo pode nos enviar sua chave pública (que pode ser visível por qualquer um) e criptografamos o arquivo usando essa chave, assim podemos enviar o arquivo para a pessoa e apenas ela conseguirá descriptografar o arquivo
+com sua chave privada.
+
+Vamos supor que o email atrelado a chave pública da pessoa que irá receber o arquivo é o `exemplo@henriquesebastiao.com`, podemos criptografar o arquivo `texto.txt` que tínhamos anteriormente com o seguinte comando:
+
+```shell
+gpg --encrypt --recipient exemplo@henriquesebastiao.com texto.txt
+```
+
+O arquivo com os dados criptografados é o `texto.txt.gpg`, podemos tentar ler esse arquivo:
+
+```shell
+$ cat texto.txt.gpg 
+�^�>��1a@�5w��Ej���-���4S������1�����n0��dv0�%�E.<�t��0z�%2K�XO�F|8��
+�o�M
+fE��J�?(<�殛�wl�Վ��%~..mݪ�1o�DR�TR�5��$p��%
+```
+
+Verificamos então que os dados estão criptografados.
+
+### Descriptografando o arquivo
+
+Para descriptografar um arquivo criptografado com a chave pública executamos o seguinte comando:
+
+```shell
+gpg --output texto-descriptografado.txt --decrypt texto.txt.gpg
+```
+
+Isso criará um arquivo chamado `texto-descriptografado.txt` contendo o conteúdo original descriptografado:
+
+```shell
+cat texto-descriptografado.txt             
+Meu texto super secreto
+```
+
+Apesar de que nestes exemplos apenas criptografei arquivos de texto, é possível criptografar qualquer formato de arquivos com GPG.
+
+## Importando chaves existentes
+
+Para importar chaves GPG existentes, seja porque você trocou de computador ou por qualquer outro motivo,
+basta executar o seguinte comando:
+
+```gpg --import public.key```
+
+Ou:
+
+```gpg --import secret.key```
