@@ -289,3 +289,55 @@ Ou:
 ```shell
 gpg --import secret.key
 ```
+
+## Assinando arquivos
+
+Assinaturas PGP servem para verificar se a integridade de um arquivo não foi comprometida,
+e esse arquivo não necessariamente precisa ser criptografado.
+
+Vamos supôr que você quer enviar um arquivo importante para alguém, então assina este documento com
+sua chave privada usando o seguinte comando:
+
+```shell
+gpg --detach-sign <arquivo>
+```
+
+Vamos usar um documento de exemplo chamado `documento.txt` e assiná-lo.
+
+```shell
+gpg --detach-sign documento.txt
+```
+
+Isso irá gerar um arquivo chamado `documento.txt.sig` que é a assinatura PGP do documento.
+Agora você pode enviar o documento e sua assinatura para o destinatário,
+tenha em mente que para verificar a assinatura do documento o destinatário
+terá que ter sua chave pública no *keyring* dele.
+
+Tendo em mão o `documento.txt` e o `documento.txt.sig` vamos verificar a assinatura com o seguinte comando:
+
+```shell
+gpg --verify documento.txt.sig documento.txt
+```
+
+Saída
+
+```txt
+gpg: Signature made Wed 04 Feb 2026 05:05:42 PM -04
+gpg:                using EDDSA key 209D1917A8C9E0ECD46BE23CFA450D27B6396F17
+gpg: Good signature from "Henrique Sebastião <exemplo@henriquesebastiao.com>" [ultimate]
+```
+
+Veja que retornou `Good signature`, o que significa que nosso arquivo está íntegro. 
+
+Para especificar com qual chave você deseja assinar o arquivo, basta passar o ID da chave ou o email
+por meio da flag `--local-user` ou `-u`, veja no exemplo abaixo:
+
+```shell
+gpg --local-user FA450D27B6396F17 --sign documento.txt
+```
+
+Ou:
+
+```shell
+gpg --local-user exemplo@henriquesebastiao.com --sign documento.txt
+```
