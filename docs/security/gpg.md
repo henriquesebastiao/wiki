@@ -39,3 +39,5 @@ ssb   cv25519/EE3EAA9D0F316114 2026-02-04 [E]
 ```
 
 A sua chave privada nunca deve ser vista por ninguém, guarde ela a sete chaves. A chave que estou exibindo aqui foi criada apenas para fins de exemplo, nunca usarei ela.
+
+Testando wrangler...
