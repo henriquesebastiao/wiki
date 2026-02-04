@@ -280,8 +280,12 @@ Apesar de que nestes exemplos apenas criptografei arquivos de texto, é possíve
 Para importar chaves GPG existentes, seja porque você trocou de computador ou por qualquer outro motivo,
 basta executar o seguinte comando:
 
-```gpg --import public.key```
+```shell
+gpg --import public.key
+```
 
 Ou:
 
-```gpg --import secret.key```
+```shell
+gpg --import secret.key
+```
