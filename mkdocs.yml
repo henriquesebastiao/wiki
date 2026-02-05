@@ -6,6 +6,8 @@ theme:
   locale: pt_BR
 nav:
   - Início: index.md
+  - Desenvolvimento:
+      - Git: development/git.md
   - Segurança:
       - GPG: security/gpg.md
       - SSH: security/ssh.md
