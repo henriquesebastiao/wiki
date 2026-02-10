@@ -13,8 +13,6 @@ nav:
       - SSH: security/ssh.md
   - Sistema:
       - Serviços: system/services.md
-  - Ferramentas:
-      - Markdown: tools/markdown.md
 markdown_extensions:
   - toc:
       permalink: true # Links de âncora para cada seção de uma página
