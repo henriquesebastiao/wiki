@@ -11,6 +11,8 @@ nav:
   - Segurança:
       - GPG: security/gpg.md
       - SSH: security/ssh.md
+  - Sistema:
+      - Serviços: system/services.md
   - Ferramentas:
       - Markdown: tools/markdown.md
 markdown_extensions:
