@@ -13,6 +13,8 @@ nav:
       - SSH: security/ssh.md
   - Sistema:
       - Serviços: system/services.md
+  - Mikrotik:
+      - Certificado: mikrotik/certificate.md
 markdown_extensions:
   - toc:
       permalink: true # Links de âncora para cada seção de uma página
