@@ -15,6 +15,7 @@ nav:
       - SSH: security/ssh.md
   - Sistema:
       - Serviços: system/services.md
+      - Portas Seriais: system/serial-ports.md
   - Mikrotik:
       - Certificado: mikrotik/certificate.md
 markdown_extensions:
