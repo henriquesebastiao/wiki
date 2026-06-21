@@ -189,3 +189,4 @@ pyrightconfig.json
 
 .wrangler/
 .idea/
+.vscode/

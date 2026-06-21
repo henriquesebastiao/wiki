@@ -10,9 +10,11 @@ nav:
       - Git: development/git.md
   - Redes:
       - ARP: network/arp.md
+      - DNS: network/dns.md
   - Segurança:
       - GPG: security/gpg.md
       - SSH: security/ssh.md
+      - Port Knocking: security/port-knocking.md
   - Sistema:
       - Serviços: system/services.md
       - Portas Seriais: system/serial-ports.md
