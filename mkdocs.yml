@@ -19,6 +19,7 @@ nav:
       - Serviços: system/services.md
       - Portas Seriais: system/serial-ports.md
       - Comparar arquivos com hash: system/compare-files.md
+      - Rede: system/network.md
   - Mikrotik:
       - Certificado: mikrotik/certificate.md
 markdown_extensions:
